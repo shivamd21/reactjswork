@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './CSS/home.css'
 
-
+//  stateless Component
 function Home() {
     const history = useHistory()
     const [FirstName, setFirstName] = useState()

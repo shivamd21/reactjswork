@@ -7,7 +7,10 @@ import './CSS/home.css'
 import { shoes, dress } from './../redux/Action/actioncreator'
 import { connect } from 'react-redux'
 
+
+//  statefull Component
 class Cart extends Component {
+    total=0
     constructor(props) {
         super(props)
     }
@@ -18,8 +21,10 @@ class Cart extends Component {
     }
 
     checkout() {
+        this.total=this.total/2
         this.props.history
-            .push(`/check`)
+            .push(`/check/${this.props.match.params.FullName}/${this.total}`)
+
     }
     render() {
         let MenDressData
@@ -28,6 +33,10 @@ class Cart extends Component {
         let WomenShoeData
         let ChildrenDressData
         let ChildrenShoeData
+      
+       
+
+        // in this section, we are getting data from redux and displaying on web page
 
         if (this.props.mendress.length > 0) {
             MenDressData = <div>
@@ -37,19 +46,32 @@ class Cart extends Component {
                         <tr>
                             <th>PRODUCT NAME</th>
                             <th>QUANTITY</th>
+                            <th>Price Per Item</th>
+                            <th>Total Price</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
                         {
                             this.props.mendress[0].map(p =>
+                               
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
-                                </tr>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                   
+                                   
+                                    <p className="sum">{this.total= this.total + p.quantity * p.price}</p>
+                                    </tr>
+                                    
+                                
                             )
                         }
                     </tbody>
-                </table></div>
+                </table>
+                </div>
+              
         }
         if (this.props.menshoes.length > 0) {
             MenShoeData = <div>
@@ -59,28 +81,36 @@ class Cart extends Component {
                         <tr>
                             <th>PRODUCT NAME</th>
                             <th>QUANTITY</th>
+                          <th>Price Per Item</th>
+                            <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             this.props.menshoes[0].map(p =>
+                               
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
-                                </tr>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                    <p className="sum">{this.total=this.total + p.quantity * p.price}</p>
+                                    </tr>
                             )
                         }
                     </tbody>
                 </table></div>
-        }
+           }
         if (this.props.womendress.length > 0) {
             WomenDressData = <div>
                 <b>Women's Dresses</b>
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>PRODUCT NAME</th>
-                            <th>QUANTITY</th>
+                        <th>PRODUCT NAME</th>
+                        <th>QUANTITY</th>
+                      <th>Price Per Item</th>
+                        <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,11 +119,15 @@ class Cart extends Component {
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                    <p className="sum">{this.total=this.total + p.quantity * p.price}</p>
                                 </tr>
                             )
                         }
                     </tbody>
                 </table></div>
+            
         }
         if (this.props.womenshoes.length > 0) {
             WomenShoeData = <div>
@@ -101,9 +135,10 @@ class Cart extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>PRODUCT NAME</th>
-                            <th>QUANTITY</th>
-                        </tr>
+                        <th>PRODUCT NAME</th>
+                        <th>QUANTITY</th>
+                      <th>Price Per Item</th>
+                        <th>Total Price</th>  </tr>
                     </thead>
                     <tbody>
                         {
@@ -111,6 +146,9 @@ class Cart extends Component {
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                    <p className="sum">{this.total=this.total + p.quantity * p.price}</p>
                                 </tr>
                             )
                         }
@@ -123,8 +161,10 @@ class Cart extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>PRODUCT NAME</th>
-                            <th>QUANTITY</th>
+                        <th>PRODUCT NAME</th>
+                        <th>QUANTITY</th>
+                      <th>Price Per Item</th>
+                        <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,6 +173,9 @@ class Cart extends Component {
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                    <p className="sum">{this.total=this.total + p.quantity * p.price}</p>
                                 </tr>
                             )
                         }
@@ -145,8 +188,10 @@ class Cart extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>PRODUCT NAME</th>
-                            <th>QUANTITY</th>
+                        <th>PRODUCT NAME</th>
+                        <th>QUANTITY</th>
+                      <th>Price Per Item</th>
+                        <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,6 +200,9 @@ class Cart extends Component {
                                 <tr>
                                     <td>{p.name}</td>
                                     <td>{p.quantity}</td>
+                                    <td>{p.price}</td>
+                                    <td>{p.quantity * p.price}</td>
+                                    <p className="sum">{this.total=this.total + p.quantity * p.price}</p>
                                 </tr>
                             )
                         }
@@ -164,12 +212,14 @@ class Cart extends Component {
         return (
             <div>
             <h1>Your Cart is ready</h1> <br/><br/><br/>
+            
  {MenDressData}
                 {MenShoeData}
                {WomenDressData}
                 {WomenShoeData}
                 {ChildrenDressData}
-                {ChildrenShoeData}
+                {ChildrenShoeData}<br /><br /><br />
+             <b> Your Cart value is :  {this.total}</b>
                 <br /><br /><br />
                 <div className="row">
                     <div className="col-xs-6 col-sm-6 col-md-4 col-lg-6 col-xl-6">
@@ -183,7 +233,7 @@ class Cart extends Component {
         )
     }
 }
-
+// fetching  data from redux and mapping to component
 const mapStateToProps = state => {
     return {
         menshoes: state.menshoes,

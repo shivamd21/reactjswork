@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Home from './Components/Home';
 import Makechoice from './Components/Makechoice';
@@ -12,7 +11,8 @@ import Cart from './Components/Cart';
 import store from './redux/Store/store'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
-import checkout from './Components/checkout';
+import Checkout from './Components/checkout';
+import Final from './Components/Final';
 
 
 function App() {
@@ -30,8 +30,10 @@ function App() {
           <Route path="/women/:FullName" component={Women} />
           <Route path="/children/:FullName" component={Children1} />
           <Route path="/cart/:FullName" component={Cart} />
-          <Route path="/check" component={checkout} />
-        </BrowserRouter>
+          <Route path="/check/:FullName/:amount" component={Checkout} />
+          <Route path="/final/" component={Final} />
+          
+          </BrowserRouter>
 
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 

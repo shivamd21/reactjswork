@@ -8,7 +8,7 @@ import { menshoes, mendress } from './../redux/Action/actioncreator'
 import { connect } from 'react-redux'
 
 
-
+//  stateless Component
 function Men(props) {
     const history = useHistory()
     const { FullName } = useParams()
@@ -22,7 +22,7 @@ function Men(props) {
 
     // Api call For Men's dresses
     useEffect(() => {
-        axios.get(` https://glacial-hamlet-86575.herokuapp.com/mendress`)
+        axios.get(`https://glacial-hamlet-86575.herokuapp.com/mendress`)
             .then(res => {
                 setDress(res.data)
             }).catch(err => console.log(err))
@@ -36,14 +36,14 @@ function Men(props) {
             }).catch(err => console.log(err))
     }, [])
 
-
+// on Pressing Add to cart , selected  data will be pushed into array
     function submitDress(e) {
-        DressSelected.push({ name: e.target.value, quantity: DressQuantity })
+        DressSelected.push({ name: e.target.value, quantity: DressQuantity , price: e.target.name})
         setDressQuantity(0)
     }
 
     function submitShoes(e) {
-        ShoeSelected.push({ name: e.target.value, quantity: ShoeQuantity })
+        ShoeSelected.push({ name: e.target.value, quantity: ShoeQuantity,price: e.target.name})
         setShoeQuantity(0)
 
     }
@@ -55,8 +55,10 @@ function Men(props) {
 
     }
 
-    // navigate to cart after pressing go to cart
+    // navigate to cart after pressing go to cart and at same time it will store data on redux
     function checkout(event) {
+        console.log(DressSelected)
+        console.log(ShoeSelected)
         if (DressSelected.length == 0 && ShoeSelected.length == 0) {
             alert("Your cart is Empty")
         } else {
@@ -83,13 +85,16 @@ function Men(props) {
                         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <div className=" homecard card">
                                 <div className="card-body">
+
                                     <img className="mydress" src={p.imagelink} alt="Logo" /> <br /><br /><br />
                                     <form >
                                         <div className="form-group">
                                             <input type="number" min="0" max="10" onChange={(e) => setDressQuantity(e.target.value)} className="form-control" placeholder="Enter quantity" />
                                         </div></form>
                                     <br /> <br />
-                                    <button className=" mybtn btn btn-primary" onClick={submitDress} value={p.value}>ADD TO CART</button>
+                                    <b>  <p className="pricetag">Rs {p.price} /-</p></b>
+                
+                                    <button className=" mybtn btn btn-primary" onClick={submitDress} name={p.price} value={p.value}>ADD TO CART</button>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +103,7 @@ function Men(props) {
             </div>
         </div>
     }
-    // setting dress data 
+    // setting shoes data 
     else {
         data = <div>
             <div className=" hero row">
@@ -107,6 +112,8 @@ function Men(props) {
                         <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <div className=" homecard card">
                                 <div className="card-body">
+                                
+                
                                     <img className="mydress" src={p.imagelink} alt="Logo" /> <br />
                                     <br /><br />
                                     <form >
@@ -114,7 +121,8 @@ function Men(props) {
                                             <input type="number" onChange={(e) => setShoeQuantity(e.target.value)} className="form-control" placeholder="Enter quantity" />
                                         </div></form>
                                     <br /> <br />
-                                    <button className=" mybtn btn btn-primary" onClick={submitShoes} value={p.value}>ADD TO CART</button>
+                                   <b> <p className="pricetag">Rs {p.price} /-</p></b>
+                                    <button className=" mybtn btn btn-primary" onClick={submitShoes} name={p.price} value={p.value}>ADD TO CART</button>
                                 </div>
                             </div>
                         </div>

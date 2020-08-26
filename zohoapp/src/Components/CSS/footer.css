@@ -1,0 +1,25 @@
+.myfooter{
+ margin:auto;
+ padding: 50px;
+}
+.colbot{
+    font-size: 15px;
+}
+h5{
+    font-size: 25px;
+}
+
+.mysource{
+    margin-left: auto;
+} 
+
+.searchinput{
+    width: 80%;
+    background-color: darkslategrey;
+    color: white;
+    height: 38px;
+    font-size: 15px;
+}
+.socialicon{
+    font-size: 25px;
+}

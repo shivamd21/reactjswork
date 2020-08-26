@@ -1,0 +1,25 @@
+.userimage{
+width: auto;
+height: auto;
+}
+
+.videoelement {
+    /* width: auto;
+    height: auto; */
+    display: flex;
+  }
+
+  .sponsor{
+      margin-top: 40px;
+    width: 115px; 
+    height: 55px;
+  }
+
+  .customer{
+      font-size: 17px;
+  }
+
+  .myuserimage{
+    width: 35px;
+    height: 35px;
+  }

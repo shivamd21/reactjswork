@@ -1,0 +1,11 @@
+.mybtn{
+    float: right;
+}
+.joincard{
+    margin-top: 200px;
+    /* color:white; */
+}
+.msg{
+    height: 300px;
+    overflow: auto;
+}
